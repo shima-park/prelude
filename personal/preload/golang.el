@@ -1,3 +1,11 @@
+(defconst EMACS_CONF "/Users/liuxingwang/.emacs.d/")
+; emacs中读取系统环境变量的插件，否则在emacs中执行go run之类的变量无法找到
+(load-file (concat EMACS_CONF "elpa/exec-path-from-shell-20180224.1916/exec-path-from-shell.el"))
+(when (fboundp 'exec-path-from-shell-copy-env)
+         (exec-path-from-shell-copy-env "GOPATH")
+                (exec-path-from-shell-copy-env "GOBIN")
+                         (exec-path-from-shell-copy-env "GOROOT")
+                                    (exec-path-from-shell-copy-env "PATH"))
 ; go跳回定义快捷键
 (global-set-key (kbd "C-c C-b") #'pop-tag-mark)
 
